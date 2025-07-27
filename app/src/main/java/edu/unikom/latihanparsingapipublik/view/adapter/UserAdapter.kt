@@ -1,4 +1,4 @@
-package edu.unikom.latihanparsingapipublik.adapter
+package edu.unikom.latihanparsingapipublik.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +11,20 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import edu.unikom.latihanparsingapipublik.R
 import edu.unikom.latihanparsingapipublik.model.DataItem
+import kotlin.collections.addAll
+import kotlin.text.clear
 
 class UserAdapter(private val users:MutableList<DataItem>) : RecyclerView.Adapter<UserAdapter.ListViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.ListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_list_user, parent, false)
 
         return ListViewHolder(view)
+    }
+
+    fun setUsers(newUsers: List<DataItem>) {
+        users.clear()
+        users.addAll(newUsers)
+        notifyDataSetChanged()
     }
 
     fun addUser(newUsers: DataItem) {
